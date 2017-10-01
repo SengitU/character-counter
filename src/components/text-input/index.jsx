@@ -15,7 +15,7 @@ export default class TextBox extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     if (props.onChange) {
-      this.onValueChanged = debounce(props.onChange, 800);
+      this.onValueChanged = debounce(props.onChange);
     }
     this.state = {
       value: props.value,
@@ -39,12 +39,8 @@ export default class TextBox extends React.Component {
     const { validator } = this.props;
     let { value } = event.target;
 
-    if (validator) {
-      if (validator(value)) {
-        this.setState({...this.state, value, isTouched: true, isValid: true});
-      } else {
-        this.setState({...this.state, value, isTouched: true, isValid: false});
-      }
+    if (validator && !validator(value)) {
+      this.setState({...this.state, value, isTouched: true, isValid: false});
     } else {
       this.setState({...this.state, value, isTouched: true, isValid: true});
     }
