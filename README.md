@@ -40,3 +40,4 @@ npm tests -- --coverage
 * TextInput component should be able to handle array of validators and must collect error messages from them
 * Test specs should be increased
 * Documentation should be generated from comments
+* CSS preprocessor should be added
